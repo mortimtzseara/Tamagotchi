@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Xml.Linq;
 using tamagochi_repo.Core.Enums;
+using tamagochi_repo.UI;
 
 namespace tamagochi_repo.Core.Models
 {
@@ -7,12 +9,12 @@ namespace tamagochi_repo.Core.Models
     {
         public TypeFood TypeFood { get; set; }
         public int NutritionalScore { get; set; }
-        public Food(string name, TypeFood typeFood) : base(name)
+        public Food(TypeFood typeFood, string name = "Food") : base(name)
         {
             TypeFood = typeFood;
 
-            if (TypeFood.Equals(TypeFood.Meal)) NutritionalScore = 50;
-            else NutritionalScore = 25;
+            if (TypeFood.Equals(TypeFood.Meal)) NutritionalScore = UIConfig.NumericValues.MealIncrease;
+            else NutritionalScore = UIConfig.NumericValues.SnackIncrease;
         }
     }
 }

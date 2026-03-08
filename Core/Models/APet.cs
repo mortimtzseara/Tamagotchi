@@ -1,22 +1,47 @@
 ﻿using System;
 using tamagochi_repo.Core.Enums;
+using tamagochi_repo.UI;
 
 namespace tamagochi_repo.Core.Models
 {
     public abstract class APet
     {
-        protected string Name { get; set; }
-        protected TypeState State { get; set; }
-        protected Stats Stats { get; set; }
-        protected bool IsDead { get; set; }
+        public string Name { get; set; }
+        public TypeState State { get; set; }
+        public Stats Stats { get; set; }
+        public DateTime BirthDate { get; init; }
 
-        protected APet(string name, Stats stats, TypeState state = TypeState.Happy, bool isDead = false)
+        protected APet(string name, Stats stats = null, TypeState state = TypeState.Happy)
         {
             Name = name;
+            Stats = stats ?? new Stats();
             State = state;
-            Stats = stats;
-            IsDead = isDead;
+            BirthDate = DateTime.Now;
         }
-        public abstract void GetArt(TypeState state);
+        public abstract void GetArt();
+
+        public virtual void RefreshState()
+        {
+            if (State == TypeState.Sick) return;
+            if (Stats.Health <= UIConfig.NumericValues.HealthStateChange)
+            {
+                State = TypeState.Sick;
+            }
+            else if (Stats.Energy <= UIConfig.NumericValues.EnergyStateChange)
+            {
+                State = TypeState.Tired;
+            }
+            else if (Stats.Hunger <= UIConfig.NumericValues.HungerStateChange)
+            {
+                if (Stats.Energy <= UIConfig.NumericValues.HungerStateChange)
+                    State = TypeState.Sad;
+                else
+                    State = TypeState.Angry;
+            }
+            else
+            {
+                State = TypeState.Happy;
+            }
+        }
     }
 }

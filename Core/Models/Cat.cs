@@ -6,12 +6,12 @@ namespace tamagochi_repo.Core.Models
 {
     public class Cat : AAnimal
     {
-        public Cat(string name, TypeState state, Stats stats, bool isDead = false) : base(name, state, stats, isDead)
+        public Cat(string name, Stats stats = null, TypeState state = TypeState.Happy) : base(name, stats, state)
         {
         }
-        public override void GetArt(TypeState state)
+        public override void GetArt()
         {
-            switch (state)
+            switch (State)
             {
                 case TypeState.Happy:
                     Console.WriteLine(UIConfig.CatSprites.Happy);
@@ -33,5 +33,6 @@ namespace tamagochi_repo.Core.Models
                     break;
             }
         }
+
     }
 }

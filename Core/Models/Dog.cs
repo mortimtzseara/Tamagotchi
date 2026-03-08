@@ -6,13 +6,13 @@ namespace tamagochi_repo.Core.Models
 {
     public class Dog: AAnimal
     {
-        public Dog(string name, TypeState state, Stats stats, bool isDead = false) : base(name, state, stats, isDead)
+        public Dog(string name, Stats stats = null, TypeState state = TypeState.Happy) : base(name, stats, state)
         {
         }
 
-        public override void GetArt(TypeState state)
+        public override void GetArt()
         {
-            switch (state)
+            switch (State)
             {
                 case TypeState.Happy:
                     Console.WriteLine(UIConfig.DogSprites.Happy);

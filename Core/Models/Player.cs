@@ -1,5 +1,7 @@
 ﻿using System;
+using tamagochi_repo.Core.Interfaces;
 using tamagochi_repo.Core.Models;
+using tamagochi_repo.UI;
 
 namespace tamagochi_repo.Core.Models
 {
@@ -15,18 +17,21 @@ namespace tamagochi_repo.Core.Models
             Pet = pet;
             Inventory = new Inventory();
         }
-        public void AddItem(AItem item)
+        public void UseItem(int index)
         {
-            Console.WriteLine($"{item.ToString()} removed from inventory");
-        }
-        public void DeleteItem(int index)
-        {
+            AItem item = Inventory.Items[index];
 
+            if (item == null) Console.WriteLine(UIConfig.ErrorMessages.ErrorOption);
+
+            if (item is IUse usableItem)
+            {
+                usableItem.UseItem(Pet);
+                Inventory.Items[index] = null;
+            }
+            else
+            {
+                Console.WriteLine(UIConfig.Messages.MsgNotUsable);
+            }
         }
-        public void UseItem(AItem item)
-        {
-            Console.WriteLine($"You used {item.ToString()}");
-        }
-        
     }
 }
