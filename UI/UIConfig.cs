@@ -59,6 +59,11 @@ namespace tamagochi_repo.UI
             public const string MsgPetName = "Give it a name: ";
             public const string MsgMenuOp = "Choose an option: ";
 
+            //stats
+            public const string Energy = "Energy: ";
+            public const string Hunger = "Hunger: ";
+            public const string Health = "Health: ";
+
             //action messages
             //eat
             public const string MsgTypeFood = "What type of food do you want to use? 1- Meal 2- Snack 3- Cancel";

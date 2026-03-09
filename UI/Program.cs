@@ -135,8 +135,11 @@ namespace tamagochi_repo.UI
                 player.Pet.Name,
                 player.Pet.State);
             player.Pet.GetArt();
+            Console.Write(UIConfig.Messages.Energy);
             Console.WriteLine(UIConfig.DrawBar(player.Pet.Stats.Energy));
+            Console.Write(UIConfig.Messages.Hunger);
             Console.WriteLine(UIConfig.DrawBar(player.Pet.Stats.Hunger));
+            Console.Write(UIConfig.Messages.Health);
             Console.WriteLine(UIConfig.DrawBar(player.Pet.Stats.Health));
             UIConfig.ShowMenu();
         }
