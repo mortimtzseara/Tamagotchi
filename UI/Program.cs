@@ -11,6 +11,9 @@ namespace tamagochi_repo.UI
         {
             int petOp, menuOp, foodOp, inventoryOp;
 
+            //Encoding
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            
             //START GAME
             Console.WriteLine(UIConfig.Messages.MsgGreet);
             Player player = new Player(Tools.Utils.ReadString(UIConfig.Messages.MsgName, UIConfig.ErrorMessages.ErrorName, 3));
